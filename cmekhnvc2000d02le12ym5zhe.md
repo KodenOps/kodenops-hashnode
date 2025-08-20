@@ -12,7 +12,7 @@ tags: redis, backend, devops, message-queue, rabbitmq, kafka, sre, mq, technical
 
 ## Introduction
 
-I saw something fascinating on TikTok few days ago that has been making me shout “Why” anytime the video replay in my head. Yes, I spend my free relaxation periods on TikTok these days. I stumbled on what was meant to be a **Cake Picnic In Lagos.** The idea is simple. Everyone brings their own cake to the picnic and everyone will share. You know, soA mething fun and communal.
+I saw something fascinating on TikTok few days ago that has been making me shout “Why” anytime the video replay in my head. Yes, I spend my free relaxation periods on TikTok these days. I stumbled on what was meant to be a **Cake Picnic In Lagos.** The idea is simple. Everyone brings their own cake to the picnic and everyone will share. You know, something fun and communal.
 
 Well, the picnic didnt end the way we all expected. And you know why?
 
