@@ -6,6 +6,7 @@ datePublished: Wed Aug 20 2025 21:32:33 GMT+0000 (Coordinated Universal Time)
 cuid: cmekhnvc2000d02le12ym5zhe
 slug: message-queues-making-sure-nobody-fights-over-cake-or-data-or-both
 cover: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/Bl9kfAFeVQs/upload/c8b44cde592bd96de3949372dda0985e.jpeg
+ogImage: https://cdn.hashnode.com/res/hashnode/image/upload/v1755726141448/48bd8412-c000-4b88-b32d-d34fc2864cc5.jpeg
 tags: redis, backend, devops, message-queue, rabbitmq, kafka, sre, mq, technical-writing-1
 
 ---
