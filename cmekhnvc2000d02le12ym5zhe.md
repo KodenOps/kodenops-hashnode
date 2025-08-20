@@ -1,6 +1,6 @@
 ---
 title: "Message Queues: Making Sure Nobody Fights Over Cake and Data (or Both)"
-seoTitle: "MESSAGE QUEUES "
+seoTitle: "MESSAGE QUEUES"
 seoDescription: "A simplified article on How asynchronous handling of messages or request in a production application"
 datePublished: Wed Aug 20 2025 21:32:33 GMT+0000 (Coordinated Universal Time)
 cuid: cmekhnvc2000d02le12ym5zhe
@@ -19,9 +19,7 @@ Well, the picnic didnt end the way we all expected. And you know why?
 
 I guess all of them took that statement by the African Giant to the extreme. Everyone wanted to have the cake all at once. Which led to a messy, unorganize and ghetto-ish scene. Some got more than enough while others just had to look and wonder where those Cake Devouring Scavengers came from.
 
-Watch the video here for context.
-
-%[https://www.youtube.com/shorts/ag4u28tPass?feature=share] 
+[Watch the TikTok video here for context.](https://vt.tiktok.com/ZSAj8cD1d/)
 
 Okay - cake, scavengers, ghetto! And Tech! What is the correlation?
 
