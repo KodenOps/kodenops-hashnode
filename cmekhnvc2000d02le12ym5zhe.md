@@ -115,7 +115,7 @@ A payment app called Konnect has a signup process that involves filling bio-data
 
 * **Frontend**: Once you submit, you can still login but you will have a “Pending confirmation” tag on your account and won’t be able to do critical stuff on the app
     
-* Backend: All new account creation request are sent to the queue. The individual people registering as the Producer. The server then pick from this queue one by one and process the request.
+* Backend: All new account creation request are sent to the queue. The individual people registering are the Producer. The server then pick from this queue one by one and process the request.
     
 * What is being processed: The consumer picks individual request, check the bio-data and compare them with the IDs you uploaded. It can even compare validity of core number (BVN, Passport number, Social Security Number, etc) with any official database (if available or included in the processing flow). If everything matches, it label the request “Success” and if otherwise - “Failed”. If the label is “Success”, it update your app and remove the “Pending confirmation” tag on your app and then give you full access to all functionalities. If failed, it sends notification to you that “your details are not matching - refill/reupload your document”
     
