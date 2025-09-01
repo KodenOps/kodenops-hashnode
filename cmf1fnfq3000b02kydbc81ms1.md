@@ -40,7 +40,7 @@ But with Kubernetes the flow is different.
 
 There must be “management” discussion before your NGINX can be created.
 
-### **Master Node**
+## **Master Node**
 
 This is where all the management discussions happen. When the engineer sends in the request to create a new NGINX server on the infrastructure, the master node will do the following before it creates the server:
 
