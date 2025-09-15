@@ -14,8 +14,6 @@ We’ve discuss how to setup your kubernetes environment both in production and 
     
 * Check Pod current state
     
-* Edit Pod configuration
-    
 * Working inside a Pod
     
 * Perform basic troubleshooting for Pods
@@ -85,13 +83,13 @@ Example of these APIGroup (logical groups) include:
 To specify the apiVersion, you will have to define APIGroup/version
 
 ```bash
-apiVersion: apps/v1   # <APIGROUP/VERSION> 
+apiVersion: apps/v1   # <APIGROUP>/<VERSION> 
 kind: xxx
 metadata: xxxx
 spec: xxxx
 ```
 
-Another type of APIGroup is the Core Group. Core group as the name implies, if for resources that makes the core of kubernetes. They are the fundamental building block for kubernetes cluster.
+Another type of APIGroup is the Core Group. Core group as the name implies, it’s for resources that makes the core of kubernetes. They are the fundamental building block for kubernetes cluster.
 
 They comprises:
 
@@ -131,7 +129,7 @@ spec: xxxx
 ```
 
 ```bash
-apiVersion: apps/v1   # <For CORE Group> 
+apiVersion: apps/v1   # <For Apps Group> 
 kind: Deployment  # <Deployment is part of the apps APIGroup>
 metadata: xxxx
 spec: xxxx
@@ -160,7 +158,7 @@ apiVersion: apps/v1
 kind: Deployment  
 metadata: 
   name: my-nginx-pod
-  namespace: prod
+  namespace: prod  # You will need to create this namespace before attaching it here.
   labels:
     apptype: web
     tier: frontend
@@ -189,7 +187,7 @@ apiVersion: v1
 kind: Pod  
 metadata: 
   name: my-nginx-pod   # Name of your pod
-  namespace: default      # the namespace your pod should run 
+  namespace: default      # the namespace your pod should run. 
   labels:
     apptype: web       # add a key/pair label to distinguish pods
     tier: frontend
@@ -234,13 +232,45 @@ This command will list all your pods with their current status. You will be able
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1757801969123/fa5ef548-6f8d-4e1d-a3a5-a4b16b4382e2.png align="left")
 
-To see more information about the pods such as IP and Worker Node its running on,
+### Checking Status of a Pod
 
-use the `-o wide` flag
+It is important to know the status of your pod from time to time. This helps in troubleshooting your pods and figuring out some basic root-cause of your problem.
 
-```bash
-kubectl get pods -o wide
-```
+There are two ways to check the status of your pod.
+
+You can either use `kubectl describe pod <pod-name>` and check the STATUS line of the long list.
+
+> This STATUS is the general pod status and it gives the overall state of the pod in question
+
+* PENDING: This status happens either when your pod has not been assigned to a node by the Scheduler, when the image is still downloading or even when their is limited resources to even initiate the creation of the pod
+    
+* RUNNING: This is what you always want to see. Your pod has been assigned to a node, the pod has started and at least one container in the pod has started, starting or restarting.
+    
+* SUCCEEDED: This is always associated with short-lived pods where the is expected to be terminated after performing a task. A good example is CRONJOB. The status means that all the containers in the pod has been terminated successfully.
+    
+* FAILED: This is partially similar to SUCCEEDED because it means all the containers in the pod has been terminated. But the difference here is that at least one of the container got terminated because of failure without restarting. This could be due to limit (OOM - out of memory, restart policy set to never, application error when exceptions are not handled, etc). Since the criteria set for the container to run (In Spec) is not met and no restart is specified, kubernetes set the status FAILED to the pod.
+    
+* UNKNOWN: This status occurs when the API server is having issues with communicating with the pod to know it’s status - majorly the kubelet of the pod due to network issue, node crash or kubelet itself dying.
+    
+
+You can also check using `kubectl get po` and check the STATUS column. This will show you the total summary of your container with its description. This shows the summary of your container state.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1757801969123/fa5ef548-6f8d-4e1d-a3a5-a4b16b4382e2.png align="left")
+
+This can also be gotten from the STATE and REASON line under containers when you use kubectl describe pods &lt;Pod-name&gt;
+
+> This is the container-level summary of the pod
+
+The statuses are as follows:
+
+* CrashLoopBackOff:
+    
+* ImagePullBackOff/ErrImagePull
+    
+* ContainerCreating
+    
+* Terminating
+    
 
 2. Checking the Details of our Pods: You’ll want to check some specific details of your Pod such as
     
