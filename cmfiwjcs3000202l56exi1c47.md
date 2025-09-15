@@ -238,7 +238,7 @@ It is important to know the status of your pod from time to time. This helps in 
 
 There are two ways to check the status of your pod.
 
-You can either use `kubectl describe pod <pod-name>` and check the STATUS line of the long list.
+You can either use `kubectl describe pod <pod-name>` and check the STATUS line of the long list. This is your POD state.
 
 > This STATUS is the general pod status and it gives the overall state of the pod in question
 
@@ -253,23 +253,21 @@ You can either use `kubectl describe pod <pod-name>` and check the STATUS line o
 * UNKNOWN: This status occurs when the API server is having issues with communicating with the pod to know it’s status - majorly the kubelet of the pod due to network issue, node crash or kubelet itself dying.
     
 
-You can also check using `kubectl get po` and check the STATUS column. This will show you the total summary of your container with its description. This shows the summary of your container state.
+Another kind of status is the CONTAINER STATUS. This can be gotten from the containers line when you use Kubectl describe command. You will see the STATE and REASON.
+
+When you use `kubectl get po` to check your pod, the STATUS column gives the summary of both the STATE and REASON of the ContainerStatus.
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1757801969123/fa5ef548-6f8d-4e1d-a3a5-a4b16b4382e2.png align="left")
 
-This can also be gotten from the STATE and REASON line under containers when you use kubectl describe pods &lt;Pod-name&gt;
+The statuses you can see at this point aside Running are as follows:
 
-> This is the container-level summary of the pod
-
-The statuses are as follows:
-
-* CrashLoopBackOff:
+* CrashLoopBackOff: This happens when the container inside the pod keeps crashing and the kunernetes enters a backoff of exponential restarts just for the container to stabilizes. This is technically the WAITING state of the container
     
-* ImagePullBackOff/ErrImagePull
+* ImagePullBackOff/ErrImagePull: This happens when there is an error in pulling the image from the registry either missing/incorrect image, secret or access to the registry, etc. This is also not a phase for pod but rather a REASON for Container STATE = Waiting.
     
-* ContainerCreating
+* ContainerCreating: This is the state where your pods has been scheduled to a node and the container is currently being created in the pod. This is an intermediate phase before RUNNING
     
-* Terminating
+* Terminating: Kubernetes is shutting down especially if you use `kubectl delete pods <Pod-Name>`.
     
 
 2. Checking the Details of our Pods: You’ll want to check some specific details of your Pod such as
