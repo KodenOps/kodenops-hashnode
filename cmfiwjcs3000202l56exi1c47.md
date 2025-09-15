@@ -62,7 +62,7 @@ It is crucial to discuss the syntax for the kubernetes yaml file because it will
 
 ### **<mark>The AKMS</mark>**
 
-This is the pneumonyms for the basic skeleton of the kubernetes configuration.
+This is the acronym I coined for the basic skeleton of the kubernetes configuration.
 
 ```bash
 apiVersion: xxx
