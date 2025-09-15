@@ -236,11 +236,11 @@ This command will list all your pods with their current status. You will be able
 
 It is important to know the status of your pod from time to time. This helps in troubleshooting your pods and figuring out some basic root-cause of your problem.
 
-There are two ways to check the status of your pod.
-
-You can either use `kubectl describe pod <pod-name>` and check the STATUS line of the long list. This is your POD state.
+You can use `kubectl describe pod <pod-name>` and check the STATUS line of the long list. This is your POD STATE.
 
 > This STATUS is the general pod status and it gives the overall state of the pod in question
+
+The list of pod statuses are highlighted below:
 
 * PENDING: This status happens either when your pod has not been assigned to a node by the Scheduler, when the image is still downloading or even when their is limited resources to even initiate the creation of the pod
     
@@ -253,7 +253,9 @@ You can either use `kubectl describe pod <pod-name>` and check the STATUS line o
 * UNKNOWN: This status occurs when the API server is having issues with communicating with the pod to know it’s status - majorly the kubelet of the pod due to network issue, node crash or kubelet itself dying.
     
 
-Another kind of status is the CONTAINER STATUS. This can be gotten from the containers line when you use Kubectl describe command. You will see the STATE and REASON.
+Another kind of status is the CONTAINER STATUS. This can be gotten from the containers line when you use `Kubectl describe` command. You will see the STATE and REASON.
+
+![](https://media.aws.iaaf.org/media/Original/5e224a67-bc34-4337-a64f-6afbe96e361d.jpg?v=-1970417484 align="center")
 
 When you use `kubectl get po` to check your pod, the STATUS column gives the summary of both the STATE and REASON of the ContainerStatus.
 
