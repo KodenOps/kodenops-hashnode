@@ -255,7 +255,9 @@ The list of pod statuses are highlighted below:
 
 Another kind of status is the CONTAINER STATUS. This can be gotten from the containers line when you use `Kubectl describe` command. You will see the STATE and REASON.
 
-![](https://media.aws.iaaf.org/media/Original/5e224a67-bc34-4337-a64f-6afbe96e361d.jpg?v=-1970417484 align="center")
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1758004010734/2581c269-012a-4da1-b1c1-9da2e1b259f0.png align="center")
+
+> Here, the container in out pod is running smoothly as seen under the STATE. We can also see the last state = Terminated and the Reason for being Terminated to be UNKNOWN.
 
 When you use `kubectl get po` to check your pod, the STATUS column gives the summary of both the STATE and REASON of the ContainerStatus.
 
@@ -272,44 +274,40 @@ The statuses you can see at this point aside Running are as follows:
 * Terminating: Kubernetes is shutting down especially if you use `kubectl delete pods <Pod-Name>`.
     
 
-2. Checking the Details of our Pods: You’ll want to check some specific details of your Pod such as
+## Other Pod details to check
+
+Checking the Details of our Pods: You’ll want to check some specific details of your Pod such as
+
+* the Container info
     
-    * the Container info
-        
-    * state of the pod
-        
-    * Volumes attached
-        
-    * namespace and all the metadata
-        
-    * And even the events that has happened
-        
+* state of the pod
     
-    To get these information, you’ll use the command below
+* Volumes attached
     
-    ```bash
-    # Syntax
-    kubectl describe pod <YOUR POD NAME>
+* namespace and all the metadata
     
-    # usage
-    kubectl describe pod my-nginx-pod
-    ```
-    
-    This will give you a long list of your Pod’s details. And you can see if your pod is crashing or started successfully.
-    
-3. Working inside your Pod: there will be time you will want to enter your pod and do some configuration (where possible). To go inside the pod, you will need to use the `kubectl exec - - -`
-    
-    ```bash
-    # Usage
-    kubectl exec -it my-nginx-pod -- sh
-    ```
-    
-    Now, you’ll be able to navigate around inside your pod.
-    
-4. Deleting your Pod: To delete your pod, you’ll run `kubectl delete pod - - -` command
-    
-    ```bash
-    kubectl delete pod my-nginx-pod
-    ```
-    
-    This will delete your `my-nginx-pod` resources from your cluster.
+
+These gives you the information about the events that happened inside the pod. This is a log of event that has happened on the pod
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1758004581070/21a0c7d9-227c-4ced-b1a8-dd64e2dca723.png align="center")
+
+### Working inside your Pod:
+
+There will be time you will want to enter your pod and do some configuration (where possible). To go inside the pod, you will need to use the `kubectl exec - - -`
+
+```bash
+# Usage
+kubectl exec -it my-nginx-pod -- sh
+```
+
+This is as if you are ssh-ing into your pod (figuratively). Now, you’ll be able to navigate around inside your pod.
+
+### Deleting your Pod:
+
+To delete your pod, you’ll run `kubectl delete pod - - -` command
+
+```bash
+kubectl delete pod <pod-name>
+```
+
+After running this command, you can quickly check the status of the pod using kubectl get pods, you will see the status being TERMINATING. This is to show you that the pod is in the deletion phase.
